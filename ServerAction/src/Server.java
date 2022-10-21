@@ -3,9 +3,9 @@ import java.net.*;
 
 public class Server {
     public static void main(String[] args) throws Exception {
-        final int PORT = 7777;
+        final int port = 7777;
         try {
-            ServerSocket ss = new ServerSocket(PORT);
+            ServerSocket ss = new ServerSocket(port);
             System.out.println("In attesa di connessioni...");
             Socket c = ss.accept();
             System.out.println("Connessione stabilita.");
@@ -14,12 +14,12 @@ public class Server {
             while (true) {
                 os = c.getOutputStream();
                 pw = new PrintWriter(os);
-                DataInputStream dos=new DataInputStream(c.getInputStream());
-                String psw=dos.readUTF();
-                System.out.println(psw);
-                pw.println("password ricevuta");
+                DataInputStream dis = new DataInputStream(c.getInputStream());
+                String msg = dis.readUTF();
+                System.out.println(msg);
+                pw.println("messaggio ricevuto");
                 pw.close();
-                //c.close();
+                // c.close();
                 System.out.println("Connessione chiusa.");
             }
         } catch (IOException e) {

@@ -12,9 +12,13 @@ public class Client {
             InputStream i = s.getInputStream();
             DataOutputStream dos = new DataOutputStream(s.getOutputStream());
             BufferedReader br = new BufferedReader(new InputStreamReader(i));
-            System.out.print("Inserisci password: ");
-            String psw = sc.next();
-            dos.writeUTF(psw);
+            System.out.print("Inserisci messaggio: ");
+            String msg = "0";
+            System.out.println("inserisci 0 per uscire, altro per inviare il messaggio");
+            do {
+                msg = sc.next();
+                dos.writeUTF(msg != "0" ? msg: "n/a");
+            } while (msg != "0");
 
             // Inizio lettura del testo in input (usando il buffered reader)
             String stringa;
